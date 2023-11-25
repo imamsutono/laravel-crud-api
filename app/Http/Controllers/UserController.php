@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 
 use App\Models\User;
 use App\Http\Requests\PostUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -59,10 +60,20 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param \App\Http\Requests\UpdateUserRequest $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
-        //
+        $data = $request->validated();
+        $user_previous_name = $user->name;
+        $user->update($data);
+
+        return response()->json([
+            'message' => "User $user_previous_name successfully updated 🥳!"
+        ]);
     }
 
     /**

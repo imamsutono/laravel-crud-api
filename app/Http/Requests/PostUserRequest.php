@@ -40,8 +40,12 @@ class PostUserRequest extends FormRequest
     protected function failedValidation(Validator $validator): void
     {
         $response = response()->json([
-            'message' => 'User failed to add. There are some errors here!',
-            'errors'  => $validator->errors()
+            'message'   => 'User failed to add. There are some errors here!',
+            'errors'    => $validator->errors(),
+            'old_input' => [
+                'name'  => $this->name,
+                'email' => $this->email
+            ]
         ], 400);
 
         throw (new ValidationException($validator, $response))

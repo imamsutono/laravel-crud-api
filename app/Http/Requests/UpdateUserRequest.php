@@ -40,8 +40,12 @@ class UpdateUserRequest extends FormRequest
     protected function failedValidation(Validator $validator): void
     {
         $response = response()->json([
-            'message' => 'Edit user failed. Please recheck your data!',
-            'errors'  => $validator->errors()
+            'message'   => 'Edit user failed. Please recheck your data!',
+            'errors'    => $validator->errors(),
+            'old_input' => [
+                'name'  => $this->name,
+                'email' => $this->email
+            ]
         ], 400);
 
         throw (new ValidationException($validator, $response))

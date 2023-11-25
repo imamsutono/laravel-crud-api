@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 use App\Models\User;
+use App\Http\Requests\PostUserRequest;
 
 class UserController extends Controller
 {
@@ -26,10 +28,17 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param \App\Http\Requests\PostUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(PostUserRequest $request): JsonResponse
     {
-        //
+        $data = $request->validated();
+
+        User::create($data);
+
+        return response()->json(['message' => 'User successfully added 🥳'], 201);
     }
 
     /**

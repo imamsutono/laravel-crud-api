@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::select('id', 'name', 'email')->paginate(25);
+        return User::select('id', 'name', 'email')
+            ->orderBy('id', 'desc')
+            ->paginate(25);
     }
 
     /**

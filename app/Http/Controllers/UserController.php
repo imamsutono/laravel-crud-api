@@ -39,7 +39,9 @@ class UserController extends Controller
 
         User::create($data);
 
-        return response()->json(['message' => 'User successfully added 🥳'], 201);
+        return response()->json([
+            'message' => 'User '. $data['name'] .' successfully added 🥳'
+        ], 201);
     }
 
     /**

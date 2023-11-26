@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 use App\Models\User;
@@ -54,10 +53,13 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(string $id)
+    public function edit(User $user): JsonResponse
     {
-        //
+        return response()->json($user->only('name', 'email'));
     }
 
     /**

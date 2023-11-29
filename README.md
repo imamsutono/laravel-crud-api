@@ -10,10 +10,10 @@
 </p>
 
 ## Features
-1. Get list of all users
-2. Create new user
-3. Edit user data
-4. Delete user
+1. Get list of all users with pagination
+3. Create a new user
+4. Edit the user data
+5. Delete user
 
 ## How to setup this application
 1. Run `git clone https://github.com/imamsutono/laravel-crud-api.git` command.
@@ -26,6 +26,6 @@
     - `DB_USERNAME`: fill with the database username connection.
     - `DB_PASSWORD`: fill with the database user password.
 8. Run `php artisan migrate` to create all database tables and columns.
-9. Run `php artisan db:seed` to insert database with dummy data.
+9. Run `php artisan db:seed` to fill dummy data to the database.
 10. Run `php artisan serve` to run the API application.
 11. Hit the endpoints. e.g: http://localhost:8000/api/user
